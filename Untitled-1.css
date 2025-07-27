@@ -1,0 +1,1248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GreenBites - Vegetarian Canteen</title>
+    <style>
+        /* Global Styles */
+        :root {
+            --primary-color: #4CAF50;
+            --secondary-color: #388E3C;
+            --accent-color: #8BC34A;
+            --light-color: #F1F8E9;
+            --dark-color: #2E7D32;
+            --text-color: #333;
+            --white: #fff;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        a {
+            text-decoration: none;
+            color: var(--primary-color);
+        }
+        
+        ul {
+            list-style: none;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 0 20px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--primary-color);
+            color: var(--white);
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .btn:hover {
+            background: var(--secondary-color);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            color: var(--dark-color);
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--accent-color);
+            margin: 10px auto;
+        }
+        
+        /* Header */
+        header {
+            background: var(--white);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        
+        .logo span {
+            color: var(--dark-color);
+        }
+        
+        nav ul {
+            display: flex;
+        }
+        
+        nav ul li {
+            margin-left: 30px;
+        }
+        
+        nav ul li a {
+            color: var(--text-color);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: var(--primary-color);
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1600&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: var(--white);
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 30px;
+        }
+        
+        /* Announcement Bar */
+        .announcement {
+            background: var(--accent-color);
+            color: var(--white);
+            padding: 15px;
+            text-align: center;
+        }
+        
+        /* About Section */
+        .about {
+            padding: 80px 0;
+            background: var(--light-color);
+        }
+        
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+        
+        .about-img {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .about-img img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .about-text h2 {
+            margin-bottom: 20px;
+            color: var(--dark-color);
+        }
+        
+        .values {
+            margin-top: 30px;
+        }
+        
+        .values li {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .values li::before {
+            content: '✓';
+            color: var(--primary-color);
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        
+        /* Menu Section */
+        .menu {
+            padding: 80px 0;
+        }
+        
+        .menu-categories {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+        
+        .menu-categories button {
+            background: none;
+            border: none;
+            padding: 10px 20px;
+            margin: 0 10px;
+            cursor: pointer;
+            font-size: 16px;
+            color: var(--text-color);
+            transition: all 0.3s;
+        }
+        
+        .menu-categories button.active {
+            color: var(--primary-color);
+            font-weight: bold;
+            border-bottom: 2px solid var(--primary-color);
+        }
+        
+        .menu-items {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .menu-item {
+            background: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        
+        .menu-item:hover {
+            transform: translateY(-10px);
+        }
+        
+        .menu-item-img {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .menu-item-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .menu-item:hover .menu-item-img img {
+            transform: scale(1.1);
+        }
+        
+        .menu-item-content {
+            padding: 20px;
+        }
+        
+        .menu-item-title {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        
+        .menu-item-title h3 {
+            color: var(--dark-color);
+        }
+        
+        .menu-item-price {
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+        
+        .menu-item-desc {
+            color: #666;
+            margin-bottom: 15px;
+        }
+        
+        /* Daily Specials */
+        .specials {
+            padding: 80px 0;
+            background: var(--light-color);
+        }
+        
+        .special-items {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .special-item {
+            background: var(--white);
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .special-day {
+            font-size: 24px;
+            color: var(--dark-color);
+            margin-bottom: 15px;
+        }
+        
+        .special-dish {
+            font-size: 20px;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+        
+        /* Meal Plans */
+        .plans {
+            padding: 80px 0;
+        }
+        
+        .plan-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .plan-card {
+            background: var(--white);
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        
+        .plan-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .plan-name {
+            font-size: 24px;
+            color: var(--dark-color);
+            margin-bottom: 15px;
+        }
+        
+        .plan-price {
+            font-size: 36px;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+        
+        .plan-features {
+            margin-bottom: 30px;
+        }
+        
+        .plan-features li {
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        /* Nutrition Info */
+        .nutrition {
+            padding: 80px 0;
+            background: var(--light-color);
+        }
+        
+        .nutrition-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .nutrition-card {
+            background: var(--white);
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .nutrition-title {
+            font-size: 24px;
+            color: var(--dark-color);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .nutrition-details {
+            margin-bottom: 20px;
+        }
+        
+        .nutrition-details li {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        /* Order Online */
+        .order {
+            padding: 80px 0;
+        }
+        
+        .order-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 30px;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .step {
+            background: var(--white);
+            border-radius: 10px;
+            padding: 30px 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background: var(--primary-color);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: bold;
+            margin: 0 auto 20px;
+        }
+        
+        .step-title {
+            font-size: 20px;
+            color: var(--dark-color);
+            margin-bottom: 15px;
+        }
+        
+        .delivery-partners {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .partner-logo {
+            width: 100px;
+            height: auto;
+        }
+        
+        /* Events & Catering */
+        .events {
+            padding: 80px 0;
+            background: var(--light-color);
+        }
+        
+        .event-services {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .event-service {
+            background: var(--white);
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .event-service h3 {
+            color: var(--dark-color);
+            margin-bottom: 15px;
+            font-size: 24px;
+        }
+        
+        /* Gallery */
+        .gallery {
+            padding: 80px 0;
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .gallery-item {
+            height: 200px;
+            overflow: hidden;
+            border-radius: 10px;
+            position: relative;
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        /* Testimonials */
+        .testimonials {
+            padding: 80px 0;
+            background: var(--light-color);
+        }
+        
+        .testimonial-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .testimonial-card {
+            background: var(--white);
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+        
+        .testimonial-author {
+            font-weight: bold;
+            color: var(--dark-color);
+        }
+        
+        /* Contact */
+        .contact {
+            padding: 80px 0;
+        }
+        
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+        
+        .contact-info h3 {
+            color: var(--dark-color);
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+        
+        .contact-details {
+            margin-bottom: 30px;
+        }
+        
+        .contact-details li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .contact-details li i {
+            margin-right: 10px;
+            color: var(--primary-color);
+        }
+        
+        .opening-hours {
+            background: var(--light-color);
+            padding: 20px;
+            border-radius: 10px;
+        }
+        
+        .opening-hours h4 {
+            margin-bottom: 15px;
+            color: var(--dark-color);
+        }
+        
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        
+        .contact-form textarea {
+            height: 150px;
+        }
+        
+        /* FAQ */
+        .faq {
+            padding: 80px 0;
+            background: var(--light-color);
+        }
+        
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .faq-item {
+            background: var(--white);
+            margin-bottom: 20px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .faq-question {
+            padding: 20px;
+            background: var(--primary-color);
+            color: var(--white);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .faq-answer {
+            padding: 20px;
+            display: none;
+        }
+        
+        .faq-answer.active {
+            display: block;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark-color);
+            color: var(--white);
+            padding: 60px 0 20px;
+        }
+        
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-col h3 {
+            color: var(--white);
+            margin-bottom: 20px;
+            font-size: 20px;
+        }
+        
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-col ul li a {
+            color: #ccc;
+            transition: color 0.3s;
+        }
+        
+        .footer-col ul li a:hover {
+            color: var(--white);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-links a {
+            color: var(--white);
+            font-size: 20px;
+            transition: color 0.3s;
+        }
+        
+        .social-links a:hover {
+            color: var(--accent-color);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #ccc;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+            }
+            
+            nav ul {
+                margin-top: 20px;
+            }
+            
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero h1 {
+                font-size: 36px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">Green<span>Bites</span></div>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#menu">Menu</a></li>
+                    <li><a href="#specials">Specials</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Announcement Bar -->
+    <div class="announcement">
+        <div class="container">
+            <p>Today's Special: Spinach & Mushroom Lasagna - Order Now!</p>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Fresh & Healthy Vegetarian Meals</h1>
+                <p>Discover our delicious plant-based dishes made with love and locally-sourced ingredients</p>
+                <a href="#menu" class="btn">View Menu</a>
+                <a href="#order" class="btn">Order Online</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <h2 class="section-title">About GreenBites</h2>
+            <div class="about-content">
+                <div class="about-img">
+                    <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Vegetarian food">
+                </div>
+                <div class="about-text">
+                    <h2>Our Story</h2>
+                    <p>Founded in 2020, GreenBites started as a small canteen with a mission to promote healthy eating. Today, we serve hundreds of happy customers daily with our delicious vegetarian meals!</p>
+                    <h3>Our Values</h3>
+                    <ul class="values">
+                        <li>Sustainability</li>
+                        <li>Health-Conscious Cooking</li>
+                        <li>Zero Food Waste Policy</li>
+                        <li>Locally-Sourced Ingredients</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section class="menu" id="menu">
+        <div class="container">
+            <h2 class="section-title">Our Menu</h2>
+            <div class="menu-categories">
+                <button class="active">All</button>
+                <button>Breakfast</button>
+                <button>Lunch</button>
+                <button>Dinner</button>
+                <button>Beverages</button>
+            </div>
+            <div class="menu-items">
+                <div class="menu-item">
+                    <div class="menu-item-img">
+                        <img src="https://images.unsplash.com/photo-1559847844-5315695dadae?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Avocado Toast">
+                    </div>
+                    <div class="menu-item-content">
+                        <div class="menu-item-title">
+                            <h3>Avocado Toast</h3>
+                            <span class="menu-item-price">$8.99</span>
+                        </div>
+                        <p class="menu-item-desc">Sourdough bread with smashed avocado, cherry tomatoes, and microgreens</p>
+                        <a href="#order" class="btn">Order Now</a>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-img">
+                        <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Veggie Burger">
+                    </div>
+                    <div class="menu-item-content">
+                        <div class="menu-item-title">
+                            <h3>Veggie Burger</h3>
+                            <span class="menu-item-price">$10.99</span>
+                        </div>
+                        <p class="menu-item-desc">House-made black bean patty with lettuce, tomato, and special sauce</p>
+                        <a href="#order" class="btn">Order Now</a>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-img">
+                        <img src="https://images.unsplash.com/photo-1547592180-85f173990554?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Margherita Pizza">
+                    </div>
+                    <div class="menu-item-content">
+                        <div class="menu-item-title">
+                            <h3>Margherita Pizza</h3>
+                            <span class="menu-item-price">$12.99</span>
+                        </div>
+                        <p class="menu-item-desc">Classic pizza with tomato sauce, fresh mozzarella, and basil</p>
+                        <a href="#order" class="btn">Order Now</a>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-img">
+                        <img src="https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Greek Salad">
+                    </div>
+                    <div class="menu-item-content">
+                        <div class="menu-item-title">
+                            <h3>Greek Salad</h3>
+                            <span class="menu-item-price">$9.99</span>
+                        </div>
+                        <p class="menu-item-desc">Fresh vegetables, olives, and feta cheese with olive oil dressing</p>
+                        <a href="#order" class="btn">Order Now</a>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-img">
+                        <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Smoothie Bowl">
+                    </div>
+                    <div class="menu-item-content">
+                        <div class="menu-item-title">
+                            <h3>Smoothie Bowl</h3>
+                            <span class="menu-item-price">$7.99</span>
+                        </div>
+                        <p class="menu-item-desc">Acai blend topped with granola, banana, and coconut flakes</p>
+                        <a href="#order" class="btn">Order Now</a>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-img">
+                        <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Green Juice">
+                    </div>
+                    <div class="menu-item-content">
+                        <div class="menu-item-title">
+                            <h3>Green Juice</h3>
+                            <span class="menu-item-price">$5.99</span>
+                        </div>
+                        <p class="menu-item-desc">Kale, spinach, apple, lemon, and ginger</p>
+                        <a href="#order" class="btn">Order Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Daily Specials -->
+    <section class="specials" id="specials">
+        <div class="container">
+            <h2 class="section-title">Daily Specials</h2>
+            <div class="special-items">
+                <div class="special-item">
+                    <div class="special-day">Monday</div>
+                    <div class="special-dish">Stuffed Bell Peppers</div>
+                    <p>Bell peppers filled with quinoa, black beans, and spices</p>
+                </div>
+                <div class="special-item">
+                    <div class="special-day">Tuesday</div>
+                    <div class="special-dish">Mushroom Risotto</div>
+                    <p>Creamy arborio rice with wild mushrooms and parmesan</p>
+                </div>
+                <div class="special-item">
+                    <div class="special-day">Wednesday</div>
+                    <div class="special-dish">Chana Masala</div>
+                    <p>Chickpeas cooked in aromatic Indian spices</p>
+                </div>
+                <div class="special-item">
+                    <div class="special-day">Thursday</div>
+                    <div class="special-dish">Veggie Tacos</div>
+                    <p>Corn tortillas with spiced cauliflower and avocado crema</p>
+                </div>
+                <div class="special-item">
+                    <div class="special-day">Friday</div>
+                    <div class="special-dish">Pasta Alfredo</div>
+                    <p>Fettuccine with creamy cashew-based alfredo sauce</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Meal Plans -->
+    <section class="plans" id="plans">
+        <div class="container">
+            <h2 class="section-title">Meal Plans</h2>
+            <div class="plan-cards">
+                <div class="plan-card">
+                    <div class="plan-name">Basic</div>
+                    <div class="plan-price">$50</div>
+                    <ul class="plan-features">
+                        <li>1 meal per day</li>
+                        <li>5 days a week</li>
+                        <li>Menu customization</li>
+                        <li>Free delivery</li>
+                    </ul>
+                    <a href="#contact" class="btn">Subscribe</a>
+                </div>
+                <div class="plan-card">
+                    <div class="plan-name">Premium</div>
+                    <div class="plan-price">$90</div>
+                    <ul class="plan-features">
+                        <li>2 meals per day</li>
+                        <li>7 days a week</li>
+                        <li>Healthy snacks</li>
+                        <li>Priority delivery</li>
+                    </ul>
+                    <a href="#contact" class="btn">Subscribe</a>
+                </div>
+                <div class="plan-card">
+                    <div class="plan-name">Family</div>
+                    <div class="plan-price">$150</div>
+                    <ul class="plan-features">
+                        <li>4 meals per day</li>
+                        <li>7 days a week</li>
+                        <li>Weekly dessert</li>
+                        <li>Family-sized portions</li>
+                    </ul>
+                    <a href="#contact" class="btn">Subscribe</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Nutrition Info -->
+    <section class="nutrition" id="nutrition">
+        <div class="container">
+            <h2 class="section-title">Nutrition Information</h2>
+            <div class="nutrition-info">
+                <div class="nutrition-card">
+                    <div class="nutrition-title">Avocado Toast</div>
+                    <ul class="nutrition-details">
+                        <li><span>Calories:</span> 350</li>
+                        <li><span>Protein:</span> 8g</li>
+                        <li><span>Carbs:</span> 35g</li>
+                        <li><span>Fats:</span> 20g</li>
+                        <li><span>Fiber:</span> 7g</li>
+                    </ul>
+                </div>
+                <div class="nutrition-card">
+                    <div class="nutrition-title">Veggie Burger</div>
+                    <ul class="nutrition-details">
+                        <li><span>Calories:</span> 450</li>
+                        <li><span>Protein:</span> 15g</li>
+                        <li><span>Carbs:</span> 45g</li>
+                        <li><span>Fats:</span> 22g</li>
+                        <li><span>Fiber:</span> 10g</li>
+                    </ul>
+                </div>
+                <div class="nutrition-card">
+                    <div class="nutrition-title">Greek Salad</div>
+                    <ul class="nutrition-details">
+                        <li><span>Calories:</span> 280</li>
+                        <li><span>Protein:</span> 9g</li>
+                        <li><span>Carbs:</span> 15g</li>
+                        <li><span>Fats:</span> 20g</li>
+                        <li><span>Fiber:</span> 5g</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Order Online -->
+    <section class="order" id="order">
+        <div class="container">
+            <h2 class="section-title">Order Online</h2>
+            <div class="order-steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-title">Select Items</div>
+                    <p>Choose from our delicious menu</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-title">Choose Option</div>
+                    <p>Pick delivery or pickup</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-title">Secure Payment</div>
+                    <p>Pay online safely</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-title">Enjoy!</div>
+                    <p>Receive your fresh meal</p>
+                </div>
+            </div>
+            <div style="text-align: center;">
+                <a href="#menu" class="btn">Start Your Order</a>
+            </div>
+            <div class="delivery-partners">
+                <img src="https://logo.clearbit.com/zomato.com" alt="Zomato" class="partner-logo">
+                <img src="https://logo.clearbit.com/swiggy.com" alt="Swiggy" class="partner-logo">
+                <img src="https://logo.clearbit.com/ubereats.com" alt="Uber Eats" class="partner-logo">
+            </div>
+        </div>
+    </section>
+
+    <!-- Events & Catering -->
+    <section class="events" id="events">
+        <div class="container">
+            <h2 class="section-title">Events & Catering</h2>
+            <div class="event-services">
+                <div class="event-service">
+                    <h3>Office Lunches</h3>
+                    <p>Keep your team happy and productive with our healthy office lunch options. We offer customizable menus for groups of all sizes.</p>
+                </div>
+                <div class="event-service">
+                    <h3>Birthday Parties</h3>
+                    <p>Celebrate your special day with our delicious vegetarian catering. We'll handle the food so you can enjoy your party.</p>
+                </div>
+                <div class="event-service">
+                    <h3>Wedding Receptions</h3>
+                    <p>Impress your guests with our elegant vegetarian wedding menu. From appetizers to desserts, we've got you covered.</p>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 40px;">
+                <a href="#contact" class="btn">Request a Quote</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery -->
+    <section class="gallery" id="gallery">
+        <div class="container">
+            <h2 class="section-title">Food Gallery</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Vegetarian food">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Vegetarian food">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1547592180-85f173990554?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Vegetarian food">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Vegetarian food">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Vegetarian food">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1559847844-5315695dadae?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Vegetarian food">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <h2 class="section-title">What Our Customers Say</h2>
+            <div class="testimonial-cards">
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"Best vegetarian canteen in town! The food is always fresh and delicious. I've been coming here for months and never get tired of their menu."</p>
+                    <p class="testimonial-author">- Rahul</p>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"Their meal plans saved me so much time! As a busy professional, having healthy meals delivered to my office has been a game-changer."</p>
+                    <p class="testimonial-author">- Neha</p>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"I'm not even vegetarian, but I love GreenBites! The flavors are incredible and I always leave feeling satisfied and energized."</p>
+                    <p class="testimonial-author">- Amit</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2 class="section-title">Contact Us</h2>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>Get in Touch</h3>
+                    <ul class="contact-details">
+                        <li>
+                            <i>📍</i>
+                            <span>123 Green Street, Veggie Town</span>
+                        </li>
+                        <li>
+                            <i>📧</i>
+                            <span>contact@greenbites.com</span>
+                        </li>
+                        <li>
+                            <i>📱</i>
+                            <span>+91 87808869423</span>
+                        </li>
+                    </ul>
+                    <div class="opening-hours">
+                        <h4>Opening Hours</h4>
+                        <p>Mon-Sat: 10:10 PM - 11 PM</p>
+                        <p>Sun: 10:10 PM - 11 PM</p>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form>
+                        <input type="text" placeholder="Your Name" required>
+                        <input type="email" placeholder="Your Email" required>
+                        <input type="text" placeholder="Subject">
+                        <textarea placeholder="Your Message" required></textarea>
+                        <button type="submit" class="btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq" id="faq">
+        <div class="container">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Do you offer gluten-free options?</span>
+                        <span>+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes! We have several gluten-free options clearly marked on our menu. Just ask our staff if you need any recommendations.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Can I modify my meal plan?</span>
+                        <span>+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Absolutely! You can modify your meal plan by informing us at least 24 hours in advance. We're happy to accommodate dietary preferences and restrictions.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Do you deliver to my area?</span>
+                        <span>+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We deliver within a 10km radius of our location. For areas beyond this, we partner with third-party delivery services that may cover your location.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Are all your dishes vegan?</span>
+                        <span>+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>While all our dishes are vegetarian, not all are vegan. However, we do have many vegan options clearly marked on our menu, and we can often veganize other dishes upon request.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-col">
+                    <h3>GreenBites</h3>
+                    <p>Fresh, healthy, and delicious vegetarian meals made with love and locally-sourced ingredients.</p>
+                    <div class="social-links">
+                        <a href="#">FB</a>
+                        <a href="#">IG</a>
+                        <a href="#">TW</a>
+                        <a href="#">YT</a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#menu">Menu</a></li>
+                        <li><a href="#specials">Specials</a></li>
+                        <li><a href="#plans">Meal Plans</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Contact Info</h3>
+                    <ul>
+                        <li>123 Green Street, Veggie Town</li>
+                        <li>contact@greenbites.com</li>
+                        <li>+91 87808869423</li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Newsletter</h3>
+                    <p>Subscribe to get updates on special offers and new menu items.</p>
+                    <form>
+                        <input type="email" placeholder="Your Email" required>
+                        <button type="submit" class="btn">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2024 GreenBites. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // FAQ Toggle
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const answer = question.nextElementSibling;
+                answer.classList.toggle('active');
+                
+                const icon = question.querySelector('span:last-child');
+                if (answer.classList.contains('active')) {
+                    icon.textContent = '-';
+                } else {
+                    icon.textContent = '+';
+                }
+            });
+        });
+
+        // Menu Category Filter (placeholder functionality)
+        document.querySelectorAll('.menu-categories button').forEach(button => {
+            button.addEventListener('click', () => {
+                document.querySelector('.menu-categories button.active').classList.remove('active');
+                button.classList.add('active');
+                // In a real implementation, you would filter menu items here
+            });
+        });
+    </script>
+</body>
+</html>
